@@ -34,7 +34,12 @@ INCLUDEPATH += $$(QTDIR)/include/QtGui
 INCLUDEPATH += $$(QTDIR)/include/QtNetwork
 INCLUDEPATH += $$(QTDIR)/include/QtOpenGL
 
-LIBS += -lopengl32
+win32 {
+    LIBS += -lopengl32
+}
+else {
+    LIBS += -lGL
+}
 
 OTHER_FILES += \
     build/makefile
@@ -54,13 +59,14 @@ SOURCES += \
 HEADERS += \
     ../shared/wos/wos.h \
     ../shared/tools/mem32.h \
-    ../shared/tools/rand.h 
-
+    ../shared/tools/rand.h \
+    ../shared/math/imath.h
 
 SOURCES += \
     ../shared/wos/wos.cpp \
     ../shared/tools/mem32.c \
-    ../shared/tools/rand.c 
+    ../shared/tools/rand.c \
+    ../shared/math/imath.c
 
 DISTFILES += \
     build/makefile
